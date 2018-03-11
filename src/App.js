@@ -4,6 +4,7 @@ import './App.css';
 import FaBeer from 'react-icons/lib/fa/beer';
 import FaThumbsOUp from 'react-icons/lib/fa/thumbs-o-up';
 import FaThumbsODown from 'react-icons/lib/fa/thumbs-o-down';
+import { tfnValid, getTestTFN } from './utils/tfn-utils.js'
 
 
 class App extends Component {
@@ -91,35 +92,11 @@ class TFNGenerator extends Component {
 
     handleGeneratorClick = (e) => {
         console.log(`Generator button clicked...`);
-        let generatedTFN = this.getTestTFN();
+        let generatedTFN = getTestTFN();
         console.log(`Generated tfn is: ${generatedTFN}`);
         this.props.handleChange(generatedTFN);
 
     }
-
-    getTestTFN() {
-        let seedNumber = Math.floor(100000000 + Math.random() * 900000000);
-        const potentialCandidates = [];
-        for(var i=1; i<= 51; i++) { potentialCandidates.push(seedNumber + i); }
-        const valTFNs = [];
-        potentialCandidates.forEach((item) => {
-            if(this.validTFNFormat(item + '')) {
-                valTFNs.push(item);
-            }
-        });
-        return valTFNs[0];
-    }
-
-    validTFNFormat(tfn) {
-        if(tfn.trim().length != 9) { return false; }
-        const checkSumWeights = [10, 7, 8, 4, 6, 3, 5, 2, 1];
-        var sum = 0;
-        String(tfn).split('').forEach(function(item, index) {
-            sum = sum + (item * checkSumWeights[index]);
-        })
-        return (sum % 11) === 0;
-    }
-
 
     render() {
         return (
@@ -144,28 +121,11 @@ class TFNValidityButton extends Component {
         super(props);
     }
 
-
-    tfnValid(tfn) {
-        let tfnValid = false;
-        console.log(`tfn is: ${tfn}`);
-        if (tfn.trim().length !== 9) {
-            return false;
-        }
-        const checkSumWeights = [10, 7, 8, 4, 6, 3, 5, 2, 1];
-        var sum = 0;
-        String(tfn).split('').forEach(function (item, index) {
-            sum = sum + (item * checkSumWeights[index]);
-        });
-        tfnValid = (sum % 11) === 0;
-
-        return tfnValid;
-    }
-
     render() {
         return (
             <div>
                 {
-                    this.tfnValid(this.props.tfn.toString()) ?
+                    tfnValid(this.props.tfn.toString()) ?
                         <button className="btn btn-success mb-2" type="button">
                             Valid <FaThumbsOUp/><span className="badge"></span>
                         </button> :
