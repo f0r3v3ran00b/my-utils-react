@@ -35,13 +35,21 @@ class App extends Component {
                     <div className="card-body">
                         <div className="row">
                             <div className="col-md-6">
-                                <TFNInput value={this.state.tfnToValidate} handleChange={this.updateTFNValue}/>
-                            </div>
-                            <div className="col-md-6">
-                                <TFNValidityButton tfn={this.state.tfnToValidate} />
+                                <div class="input-group mb-3">
+                                    <TFNInput value={this.state.tfnToValidate} handleChange={this.updateTFNValue}/>
+                                    <div class="input-group-append">
+                                        <TFNValidityButton tfn={this.state.tfnToValidate} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <TFNGenerator checkTFNValid={this.tfnValid} handleChange={this.updateTFNValue}/>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div class="input-group mb-3">
+                                    <TFNGenerator checkTFNValid={this.tfnValid} handleChange={this.updateTFNValue}/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -79,13 +87,7 @@ class TFNInput extends Component {
 class TFNGenerator extends Component {
     constructor(props) {
         super(props);
-        this.dummyLogger();
     }
-
-    dummyLogger() {
-        console.log(`Helo world ;-) !`);
-    }
-
 
     handleGeneratorClick = (e) => {
         console.log(`Generator button clicked...`);
