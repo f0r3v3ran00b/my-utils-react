@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import FaBeer from 'react-icons/lib/fa/beer';
-import FaThumbsOUp from 'react-icons/lib/fa/thumbs-o-up';
-import FaThumbsODown from 'react-icons/lib/fa/thumbs-o-down';
 import { tfnValid, getTestTFN } from './utils/tfn-utils.js'
-
+import TFNValidityButton from './components/TFNValidityButton.js'
+import TFNInput from './components/TFNInput.js'
+import TFNGenerator from './components/TFNGenerator.js'
 
 class App extends Component {
       constructor(props) {
@@ -58,84 +56,5 @@ class App extends Component {
         )
   }
 } // End component App
-
-class TFNInput extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    handleTFNChange = (e) => {
-        let currentTFNValue = e.target.value;
-        console.log(`Current TFN value: ${currentTFNValue}`);
-        this.props.handleChange(currentTFNValue);
-    }
-
-    render() {
-        return (
-            <form className="form-inline">
-                <div className="form-group mx-sm-3 mb-2">
-                    <input
-                        value={this.props.value}
-                        placeholder="Enter TFN to check" type="text" className="form-control"
-                        onChange={this.handleTFNChange}
-                    />
-                </div>
-            </form>
-        )
-    }
-}
-
-class TFNGenerator extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    handleGeneratorClick = (e) => {
-        console.log(`Generator button clicked...`);
-        let generatedTFN = getTestTFN();
-        console.log(`Generated tfn is: ${generatedTFN}`);
-        this.props.handleChange(generatedTFN);
-
-    }
-
-    render() {
-        return (
-            <div>
-                <form className="form-inline">
-                    <div className="form-group mx-sm-3 mb-2">
-                        <button className="btn btn-primary mb-2" type="button" onClick={this.handleGeneratorClick}>
-                            Generate TFN
-                        </button>
-                    </div>
-                </form>
-            </div>
-        )
-    }
-}
-
-
-
-class TFNValidityButton extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div>
-                {
-                    tfnValid(this.props.tfn.toString()) ?
-                        <button className="btn btn-success mb-2" type="button">
-                            Valid <FaThumbsOUp/><span className="badge"></span>
-                        </button> :
-                        <button className="btn btn-danger mb-2" type="button">
-                            Invalid <FaThumbsODown/><span className="badge"></span>
-                        </button>
-                }
-            </div>
-        )
-    }
-}
 
 export default App;
