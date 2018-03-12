@@ -33,9 +33,9 @@ class App extends Component {
                     <div className="card-body">
                         <div className="row">
                             <div className="col-md-6">
-                                <div class="input-group mb-3">
+                                <div className="input-group mb-3">
                                     <TFNInput value={this.state.tfnToValidate} handleChange={this.updateTFNValue}/>
-                                    <div class="input-group-append">
+                                    <div className="input-group-append">
                                         <TFNValidityButton tfn={this.state.tfnToValidate} />
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@ class App extends Component {
                         </div>
                         <div className="row">
                             <div className="col-md-6">
-                                <div class="input-group mb-3">
+                                <div className="input-group mb-3">
                                     <TFNGenerator checkTFNValid={this.tfnValid} handleChange={this.updateTFNValue}/>
                                 </div>
                             </div>
