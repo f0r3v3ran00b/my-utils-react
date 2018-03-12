@@ -24,6 +24,11 @@ class App extends Component {
         });
     }
 
+    tfnUpdateHandler = (e) => {
+        let tfnInParent = e.target.value;
+        console.log(`Value of tfn in parent: ${tfnInParent}`);
+        this.updateTFNValue(tfnInParent);
+    }
 
     render() {
         return (
@@ -34,7 +39,7 @@ class App extends Component {
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="input-group mb-3">
-                                    <TFNInput value={this.state.tfnToValidate} handleChange={this.updateTFNValue}/>
+                                    <TFNInput value={this.state.tfnToValidate} handleChange={this.tfnUpdateHandler}/>
                                     <div className="input-group-append">
                                         <TFNValidityButton tfn={this.state.tfnToValidate} />
                                     </div>
