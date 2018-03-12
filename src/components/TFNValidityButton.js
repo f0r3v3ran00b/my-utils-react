@@ -7,7 +7,7 @@ import FaThumbsODown from 'react-icons/lib/fa/thumbs-o-down';
 const TFNValidityButton = (props) => {
 
     return (
-            <div>
+            <span>
                 {
                     tfnValid(props.tfn.toString()) ?
                         <button className="btn btn-success mb-2" type="button">
@@ -17,7 +17,7 @@ const TFNValidityButton = (props) => {
                             Invalid <FaThumbsODown/><span className="badge"></span>
                         </button>
                 }
-            </div>
+            </span>
     );
 }
 

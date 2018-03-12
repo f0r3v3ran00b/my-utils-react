@@ -34,23 +34,19 @@ class App extends Component {
         return (
           <div className="App">
             <div className="container">
-                <div className="card">
+                <div className="card my-card">
                     <div className="card-body">
                         <div className="row">
+                            <div className="col-sm-6">
+                                <TFNInput value={this.state.tfnToValidate} handleChange={this.tfnUpdateHandler}/>
+                            </div>
                             <div className="col-md-6">
-                                <div className="input-group mb-3">
-                                    <TFNInput value={this.state.tfnToValidate} handleChange={this.tfnUpdateHandler}/>
-                                    <div className="input-group-append">
-                                        <TFNValidityButton tfn={this.state.tfnToValidate} />
-                                    </div>
-                                </div>
+                                <TFNValidityButton tfn={this.state.tfnToValidate} />
                             </div>
                         </div>
                         <div className="row">
                             <div className="col-md-6">
-                                <div className="input-group mb-3">
-                                    <TFNGenerator checkTFNValid={this.tfnValid} handleChange={this.updateTFNValue}/>
-                                </div>
+                                <TFNGenerator checkTFNValid={this.tfnValid} handleChange={this.updateTFNValue}/>
                             </div>
                         </div>
                     </div>
