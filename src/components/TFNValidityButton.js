@@ -4,17 +4,12 @@ import FaThumbsOUp from 'react-icons/lib/fa/thumbs-o-up';
 import FaThumbsODown from 'react-icons/lib/fa/thumbs-o-down';
 
 
-export default class TFNValidityButton extends Component {
+const TFNValidityButton = (props) => {
 
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
+    return (
             <div>
                 {
-                    tfnValid(this.props.tfn.toString()) ?
+                    tfnValid(props.tfn.toString()) ?
                         <button className="btn btn-success mb-2" type="button">
                             Valid <FaThumbsOUp/><span className="badge"></span>
                         </button> :
@@ -23,6 +18,7 @@ export default class TFNValidityButton extends Component {
                         </button>
                 }
             </div>
-        )
-    }
+    );
 }
+
+export default TFNValidityButton;

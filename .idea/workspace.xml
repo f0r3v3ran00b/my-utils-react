@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc92810c-ddc9-4c02-86f7-f8e8086e730d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
-      <change beforePath="$PROJECT_DIR$/src/components/TFNInput.js" afterPath="$PROJECT_DIR$/src/components/TFNInput.js" />
+      <change beforePath="$PROJECT_DIR$/src/components/TFNValidityButton.js" afterPath="$PROJECT_DIR$/src/components/TFNValidityButton.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -96,7 +95,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TFNInput.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TFNInput.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/TFNInput.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
@@ -106,12 +105,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TFNValidityButton.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TFNValidityButton.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/TFNValidityButton.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="27" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="357">
+              <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -151,6 +152,7 @@
       <find>tfnValid</find>
       <find>class=</find>
       <find>this.</find>
+      <find>this</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -177,7 +179,6 @@
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/utils/tfn-utils.js" />
-        <option value="$PROJECT_DIR$/src/components/TFNValidityButton.js" />
         <option value="$PROJECT_DIR$/test/first-test.js" />
         <option value="$PROJECT_DIR$/src/first-test.test.js" />
         <option value="$PROJECT_DIR$/src/FirstTest.js" />
@@ -186,6 +187,7 @@
         <option value="$PROJECT_DIR$/src/components/TFNGenerator.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/components/TFNInput.js" />
+        <option value="$PROJECT_DIR$/src/components/TFNValidityButton.js" />
       </list>
     </option>
   </component>
@@ -415,12 +417,12 @@
       <workItem from="1520498980669" duration="20936000" />
       <workItem from="1520647511692" duration="8239000" />
       <workItem from="1520725361214" duration="2331000" />
-      <workItem from="1520729467772" duration="8950000" />
+      <workItem from="1520729467772" duration="9166000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40456000" />
+    <option name="totallyTimeSpent" value="40672000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="40" y="23" width="1400" height="877" extended-state="6" />
@@ -714,14 +716,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/TFNValidityButton.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="27" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -796,6 +790,16 @@
         <state relative-caret-position="51">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/TFNValidityButton.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
