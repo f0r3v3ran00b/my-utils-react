@@ -137,6 +137,8 @@ div.token-input-dropdown-facebook
 }
 
 .autocomplete-input {
-  outline: none;
+  outline-color: red;
+  border-color: peachpuff;
   width: 30px;
+  background-color: #3b5998;
 }
