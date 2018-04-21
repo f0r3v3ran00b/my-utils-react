@@ -69,6 +69,15 @@ class AutoComplete extends Component {
         currentlyHighlightedPosition:
           this.state.currentlyHighlightedPosition - 1
       });
+    } else if (e.keyCode === 13) {
+      let newItems = [];
+      newItems.push(
+        this.state.possibleMatches[this.state.currentlyHighlightedPosition]
+      );
+      console.log(`Will add: ${newItems[0]} to array`);
+      this.setState({
+        matchedItems: this.state.matchedItems.concat(newItems)
+      });
     }
   }
 
