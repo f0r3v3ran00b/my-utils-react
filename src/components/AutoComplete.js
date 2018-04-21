@@ -10,7 +10,8 @@ class AutoComplete extends Component {
       allItems: ["Seinfeld", "Friends", "Morse", "South Park", "Sherlock"],
       matchedItems: ["Seinfeld", "Morse", "Sherlock"],
       possibleMatches: [],
-      currentSearchValue: ""
+      currentSearchValue: "",
+      currentlyHighlightedPosition: -1
     };
   }
 
@@ -19,6 +20,7 @@ class AutoComplete extends Component {
     this.setState({
       currentSearchValue: currentSearchInputValue
     });
+
     if (currentSearchInputValue.length > 0) {
       let filteredItems = this.state.allItems.filter(function(item) {
         return item
@@ -35,6 +37,7 @@ class AutoComplete extends Component {
 
   handleKeyDown(e) {
     if (e.keyCode === 8) {
+      // backspace
       console.log(`Backspace pressed`);
       if (this.state.currentSearchValue.length === 0) {
         console.log(`No more chars to delete`);
@@ -47,13 +50,35 @@ class AutoComplete extends Component {
           });
         }
       }
+    } else if (e.keyCode === 40 && this.state.possibleMatches.length > 0) {
+      // down arrow
+      console.log(`Down arrow pressed`);
+      this.setState({
+        currentlyHighlightedPosition:
+          this.state.currentlyHighlightedPosition + 1
+      });
+    } else if (e.keyCode === 38 && this.state.possibleMatches.length > 0) {
+      console.log(`Up arrow pressed`);
+      this.setState({
+        currentlyHighlightedPosition:
+          this.state.currentlyHighlightedPosition - 1
+      });
     }
   }
 
   render() {
     return (
       <div>
-        Current search text: {this.state.currentSearchValue}
+        <div>Current search text: {this.state.currentSearchValue}</div>
+        <hr />
+        <div>
+          Current possible matches length: {this.state.possibleMatches.length}
+        </div>
+        <hr />
+        <div>
+          Current highlighted position:{" "}
+          {this.state.currentlyHighlightedPosition}
+        </div>
         <hr />
         {this.state.allItems.map(function(item, idx) {
           return <div key={idx}>{item}</div>;
