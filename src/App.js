@@ -57,7 +57,7 @@ class App extends Component {
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-12">
                   <AutoComplete />
                 </div>
               </div>

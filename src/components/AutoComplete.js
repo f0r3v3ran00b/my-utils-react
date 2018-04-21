@@ -53,6 +53,12 @@ class AutoComplete extends Component {
     } else if (e.keyCode === 40 && this.state.possibleMatches.length > 0) {
       // down arrow
       console.log(`Down arrow pressed`);
+      if (
+        this.state.currentlyHighlightedPosition >
+        this.state.possibleMatches.length - 1
+      )
+        return;
+
       this.setState({
         currentlyHighlightedPosition:
           this.state.currentlyHighlightedPosition + 1
@@ -69,21 +75,34 @@ class AutoComplete extends Component {
   render() {
     return (
       <div>
-        <div>Current search text: {this.state.currentSearchValue}</div>
-        <hr />
-        <div>
-          Current possible matches length: {this.state.possibleMatches.length}
+        <div className="debug-info">
+          <div>Current search text: {this.state.currentSearchValue}</div>
+          <hr />
+          <div>
+            Current possible matches length: {this.state.possibleMatches.length}
+          </div>
+          <hr />
+          <div>
+            <span>
+              Current highlighted position:{" "}
+              {this.state.currentlyHighlightedPosition}
+            </span>&nbsp;<span>
+              Current highlighted value:{" "}
+              {
+                this.state.possibleMatches[
+                  this.state.currentlyHighlightedPosition
+                ]
+              }
+            </span>
+          </div>
+          <hr />
+          Complete list:&nbsp;
+          {this.state.allItems.map(function(item, idx) {
+            return <span key={idx}>{item} </span>;
+          })}
+          <hr />
         </div>
-        <hr />
-        <div>
-          Current highlighted position:{" "}
-          {this.state.currentlyHighlightedPosition}
-        </div>
-        <hr />
-        {this.state.allItems.map(function(item, idx) {
-          return <div key={idx}>{item}</div>;
-        })}
-        <hr />
+
         <ul className="token-input-list-facebook">
           {this.state.matchedItems.map(function(match, idx) {
             return (
@@ -103,8 +122,24 @@ class AutoComplete extends Component {
             />
           </li>
         </ul>
-        {this.state.possibleMatches.map(function(possibleMatch, idx) {
-          return <div key={idx}>{possibleMatch}</div>;
+        {this.state.possibleMatches.map((possibleMatch, idx) => {
+          console.log(
+            `idx: ${idx} AND currentlyHighlightedPosition: ${
+              this.state.currentlyHighlightedPosition
+            }`
+          );
+          return (
+            <div
+              className={
+                idx === this.state.currentlyHighlightedPosition
+                  ? "highlightedPosition"
+                  : null
+              }
+              key={idx}
+            >
+              {possibleMatch}
+            </div>
+          );
         })}
       </div>
     );

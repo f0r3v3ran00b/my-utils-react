@@ -142,3 +142,14 @@ div.token-input-dropdown-facebook
   width: 30px;
   background-color: #3b5998;
 }
+
+.highlightedPosition {
+  color: brown;
+  background-color: peachpuff;
+}
+
+.debug-info {
+  font-size: 75%;
+  color: whitesmoke;
+  background-color: palevioletred;
+}
