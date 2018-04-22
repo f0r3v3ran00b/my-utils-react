@@ -12,8 +12,8 @@ class AutoComplete extends Component {
     // Bind stuff
     this.handleOnDeleteClick = this.handleOnDeleteClick.bind(this);
     this.state = {
-      allItems: tvShows,
-      matchedItems: ["Seinfeld", "Morse", "Sherlock"],
+      allItems: tvShows, //matchedItems: ["Seinfeld", "Morse", "Sherlock"],
+      matchedItems: [],
       possibleMatches: [],
       currentSearchValue: "",
       currentlyHighlightedPosition: DEFAULT_UNHIGHLIGHTED_INDEX
@@ -119,34 +119,6 @@ class AutoComplete extends Component {
   render() {
     return (
       <div>
-        <div className="debug-info">
-          <div>Current search text: {this.state.currentSearchValue}</div>
-          <hr />
-          <div>
-            Current possible matches length: {this.state.possibleMatches.length}
-          </div>
-          <hr />
-          <div>
-            <span>
-              Current highlighted position:{" "}
-              {this.state.currentlyHighlightedPosition}
-            </span>&nbsp;<span>
-              Current highlighted value:{" "}
-              {
-                this.state.possibleMatches[
-                  this.state.currentlyHighlightedPosition
-                ]
-              }
-            </span>
-          </div>
-          <hr />
-          Complete list:&nbsp;
-          {this.state.allItems.map(function(item, idx) {
-            return <span key={idx}>{item} </span>;
-          })}
-          <hr />
-        </div>
-
         <div>
           <div>
             <ul className="token-input-list-facebook">

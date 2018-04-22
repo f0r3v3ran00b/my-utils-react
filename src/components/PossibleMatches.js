@@ -1,6 +1,4 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
-
+import React from "react";
 import "../Autocomplete.css";
 
 let PossibleMatches = props => {
