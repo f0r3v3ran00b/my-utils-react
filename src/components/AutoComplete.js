@@ -114,10 +114,9 @@ class AutoComplete extends Component {
         this.state.possibleMatches[this.state.currentlyHighlightedPosition]
       );
       this.setState({
-        matchedItems: this.state.matchedItems.concat(newItems)
-      });
-      this.setState({
-        currentSearchValue: ""
+        matchedItems: this.state.matchedItems.concat(newItems),
+        currentSearchValue: "",
+        possibleMatches: []
       });
     }
   }
