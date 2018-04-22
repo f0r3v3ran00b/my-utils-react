@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import tvShows from "./tv-shows.js";
+import PossibleMatches from "./PossibleMatches.js";
 
 import "../Autocomplete.css";
 const DEFAULT_UNHIGHLIGHTED_INDEX = -1;
@@ -10,7 +12,7 @@ class AutoComplete extends Component {
     // Bind stuff
     this.handleOnDeleteClick = this.handleOnDeleteClick.bind(this);
     this.state = {
-      allItems: ["Seinfeld", "Friends", "Morse", "South Park", "Sherlock"],
+      allItems: tvShows,
       matchedItems: ["Seinfeld", "Morse", "Sherlock"],
       possibleMatches: [],
       currentSearchValue: "",
@@ -92,7 +94,7 @@ class AutoComplete extends Component {
       // enter key
       if (this.state.currentlyHighlightedPosition < 0) return; //  Don't add blanks
 
-      // If in array already
+      // If in array already, do nothing
       if (
         this.state.matchedItems.includes(
           this.state.possibleMatches[this.state.currentlyHighlightedPosition]
@@ -105,9 +107,11 @@ class AutoComplete extends Component {
       newItems.push(
         this.state.possibleMatches[this.state.currentlyHighlightedPosition]
       );
-      console.log(`Will add: ${newItems[0]} to array`);
       this.setState({
         matchedItems: this.state.matchedItems.concat(newItems)
+      });
+      this.setState({
+        currentSearchValue: ""
       });
     }
   }
@@ -162,6 +166,7 @@ class AutoComplete extends Component {
               })}
               <li className="token-input-input-token-facebook">
                 <input
+                  value={this.state.currentSearchValue}
                   className="autocomplete-input"
                   type="text"
                   id="token-input-tokeninput-demo"
@@ -172,28 +177,12 @@ class AutoComplete extends Component {
             </ul>
           </div>
 
-          <div className="possible-matches">
-            {this.state.possibleMatches.map((possibleMatch, idx) => {
-              console.log(
-                `idx: ${idx} AND currentlyHighlightedPosition: ${
-                  this.state.currentlyHighlightedPosition
-                }`
-              );
-              return (
-                <div key={idx}>
-                  <span
-                    className={
-                      idx === this.state.currentlyHighlightedPosition
-                        ? "highlightedPosition"
-                        : null
-                    }
-                  >
-                    {possibleMatch}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+          <PossibleMatches
+            possibleMatches={this.state.possibleMatches}
+            currentlyHighlightedPosition={
+              this.state.currentlyHighlightedPosition
+            }
+          />
         </div>
       </div>
     );

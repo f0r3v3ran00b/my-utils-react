@@ -162,7 +162,7 @@ div.token-input-dropdown-facebook
 .possible-matches {
   margin-top: 7px;
   border: gainsboro;
-  border-style: solid;
+  border-style: none;
   border-width: 0.5pt;
   width: 100%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
