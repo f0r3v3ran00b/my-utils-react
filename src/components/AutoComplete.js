@@ -5,6 +5,10 @@ import PossibleMatches from "./PossibleMatches.js";
 
 import "../Autocomplete.css";
 const DEFAULT_UNHIGHLIGHTED_INDEX = -1;
+const BACKSPACE_KEYCODE = 8;
+const DOWN_ARROW_KEYCODE = 40;
+const UP_ARROW_KEYCODE = 38;
+const ENTER_KEYCODE = 13;
 
 class AutoComplete extends Component {
   constructor(props) {
@@ -12,7 +16,7 @@ class AutoComplete extends Component {
     // Bind stuff
     this.handleOnDeleteClick = this.handleOnDeleteClick.bind(this);
     this.state = {
-      allItems: tvShows, //matchedItems: ["Seinfeld", "Morse", "Sherlock"],
+      allItems: tvShows,
       matchedItems: [],
       possibleMatches: [],
       currentSearchValue: "",
@@ -50,9 +54,7 @@ class AutoComplete extends Component {
   }
 
   handleKeyDown(e) {
-    if (e.keyCode === 8) {
-      // backspace
-      console.log(`Backspace pressed`);
+    if (e.keyCode === BACKSPACE_KEYCODE) {
       if (this.state.currentSearchValue.length === 0) {
         console.log(`No more chars to delete`);
         if (this.state.matchedItems.length > 0) {
@@ -64,9 +66,10 @@ class AutoComplete extends Component {
           });
         }
       }
-    } else if (e.keyCode === 40 && this.state.possibleMatches.length > 0) {
-      // down arrow
-      console.log(`Down arrow pressed`);
+    } else if (
+      e.keyCode === DOWN_ARROW_KEYCODE &&
+      this.state.possibleMatches.length > 0
+    ) {
       if (
         this.state.currentlyHighlightedPosition >=
         this.state.possibleMatches.length - 1
@@ -77,8 +80,10 @@ class AutoComplete extends Component {
         currentlyHighlightedPosition:
           this.state.currentlyHighlightedPosition + 1
       });
-    } else if (e.keyCode === 38 && this.state.possibleMatches.length > 0) {
-      console.log(`Up arrow pressed`);
+    } else if (
+      e.keyCode === UP_ARROW_KEYCODE &&
+      this.state.possibleMatches.length > 0
+    ) {
       if (
         this.state.currentlyHighlightedPosition <= DEFAULT_UNHIGHLIGHTED_INDEX
       ) {
@@ -90,8 +95,7 @@ class AutoComplete extends Component {
         currentlyHighlightedPosition:
           this.state.currentlyHighlightedPosition - 1
       });
-    } else if (e.keyCode === 13) {
-      // enter key
+    } else if (e.keyCode === ENTER_KEYCODE) {
       if (this.state.currentlyHighlightedPosition < 0) return; //  Don't add blanks
 
       // If in array already, do nothing
