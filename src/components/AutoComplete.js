@@ -2,17 +2,29 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 import "../Autocomplete.css";
+const DEFAULT_UNHIGHLIGHTED_INDEX = -1;
 
 class AutoComplete extends Component {
   constructor(props) {
     super(props);
+    // Bind stuff
+    this.handleOnDeleteClick = this.handleOnDeleteClick.bind(this);
     this.state = {
       allItems: ["Seinfeld", "Friends", "Morse", "South Park", "Sherlock"],
       matchedItems: ["Seinfeld", "Morse", "Sherlock"],
       possibleMatches: [],
       currentSearchValue: "",
-      currentlyHighlightedPosition: -1
+      currentlyHighlightedPosition: DEFAULT_UNHIGHLIGHTED_INDEX
     };
+  }
+
+  handleOnDeleteClick(match) {
+    console.log(`clicked on: ${match}`);
+    this.setState({
+      matchedItems: this.state.matchedItems.filter(item => {
+        return item !== match;
+      })
+    });
   }
 
   handleSearchChange(e) {
@@ -54,7 +66,7 @@ class AutoComplete extends Component {
       // down arrow
       console.log(`Down arrow pressed`);
       if (
-        this.state.currentlyHighlightedPosition >
+        this.state.currentlyHighlightedPosition >=
         this.state.possibleMatches.length - 1
       )
         return;
@@ -65,11 +77,30 @@ class AutoComplete extends Component {
       });
     } else if (e.keyCode === 38 && this.state.possibleMatches.length > 0) {
       console.log(`Up arrow pressed`);
+      if (
+        this.state.currentlyHighlightedPosition <= DEFAULT_UNHIGHLIGHTED_INDEX
+      ) {
+        // -1 being the default state
+        return;
+      }
+
       this.setState({
         currentlyHighlightedPosition:
           this.state.currentlyHighlightedPosition - 1
       });
     } else if (e.keyCode === 13) {
+      // enter key
+      if (this.state.currentlyHighlightedPosition < 0) return; //  Don't add blanks
+
+      // If in array already
+      if (
+        this.state.matchedItems.includes(
+          this.state.possibleMatches[this.state.currentlyHighlightedPosition]
+        )
+      ) {
+        return;
+      }
+
       let newItems = [];
       newItems.push(
         this.state.possibleMatches[this.state.currentlyHighlightedPosition]
@@ -112,44 +143,58 @@ class AutoComplete extends Component {
           <hr />
         </div>
 
-        <ul className="token-input-list-facebook">
-          {this.state.matchedItems.map(function(match, idx) {
-            return (
-              <li key={idx} className="token-input-token-facebook">
-                <p>{match}</p>
-                <span className="token-input-delete-token-facebook">×</span>
+        <div>
+          <div>
+            <ul className="token-input-list-facebook">
+              {this.state.matchedItems.map((match, idx) => {
+                return (
+                  <li key={idx} className="token-input-token-facebook">
+                    <p>{match}</p>
+                    <span
+                      key={match}
+                      onClick={this.handleOnDeleteClick.bind(null, match)}
+                      className="token-input-delete-token-facebook"
+                    >
+                      ×
+                    </span>
+                  </li>
+                );
+              })}
+              <li className="token-input-input-token-facebook">
+                <input
+                  className="autocomplete-input"
+                  type="text"
+                  id="token-input-tokeninput-demo"
+                  onChange={this.handleSearchChange.bind(this)}
+                  onKeyDown={this.handleKeyDown.bind(this)}
+                />
               </li>
-            );
-          })}
-          <li className="token-input-input-token-facebook">
-            <input
-              className="autocomplete-input"
-              type="text"
-              id="token-input-tokeninput-demo"
-              onChange={this.handleSearchChange.bind(this)}
-              onKeyDown={this.handleKeyDown.bind(this)}
-            />
-          </li>
-        </ul>
-        {this.state.possibleMatches.map((possibleMatch, idx) => {
-          console.log(
-            `idx: ${idx} AND currentlyHighlightedPosition: ${
-              this.state.currentlyHighlightedPosition
-            }`
-          );
-          return (
-            <div
-              className={
-                idx === this.state.currentlyHighlightedPosition
-                  ? "highlightedPosition"
-                  : null
-              }
-              key={idx}
-            >
-              {possibleMatch}
-            </div>
-          );
-        })}
+            </ul>
+          </div>
+
+          <div className="possible-matches">
+            {this.state.possibleMatches.map((possibleMatch, idx) => {
+              console.log(
+                `idx: ${idx} AND currentlyHighlightedPosition: ${
+                  this.state.currentlyHighlightedPosition
+                }`
+              );
+              return (
+                <div key={idx}>
+                  <span
+                    className={
+                      idx === this.state.currentlyHighlightedPosition
+                        ? "highlightedPosition"
+                        : null
+                    }
+                  >
+                    {possibleMatch}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     );
   }
