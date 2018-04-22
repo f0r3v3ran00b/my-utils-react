@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import tvShows from "./tv-shows.js";
 import PossibleMatches from "./PossibleMatches.js";
+import SelectedMatch from "./SelectedMatch.js";
+import SelectedMatches from "./SelectedMatches.js";
 
 import "../Autocomplete.css";
 const DEFAULT_UNHIGHLIGHTED_INDEX = -1;
@@ -17,7 +19,7 @@ class AutoComplete extends Component {
     this.handleOnDeleteClick = this.handleOnDeleteClick.bind(this);
     this.state = {
       allItems: tvShows,
-      matchedItems: [],
+      matchedItems: ["Seinfed", "Sherlock"],
       possibleMatches: [],
       currentSearchValue: "",
       currentlyHighlightedPosition: DEFAULT_UNHIGHLIGHTED_INDEX
@@ -124,34 +126,13 @@ class AutoComplete extends Component {
     return (
       <div>
         <div>
-          <div>
-            <ul className="token-input-list-facebook">
-              {this.state.matchedItems.map((match, idx) => {
-                return (
-                  <li key={idx} className="token-input-token-facebook">
-                    <p>{match}</p>
-                    <span
-                      key={match}
-                      onClick={this.handleOnDeleteClick.bind(null, match)}
-                      className="token-input-delete-token-facebook"
-                    >
-                      ×
-                    </span>
-                  </li>
-                );
-              })}
-              <li className="token-input-input-token-facebook">
-                <input
-                  value={this.state.currentSearchValue}
-                  className="autocomplete-input"
-                  type="text"
-                  id="token-input-tokeninput-demo"
-                  onChange={this.handleSearchChange.bind(this)}
-                  onKeyDown={this.handleKeyDown.bind(this)}
-                />
-              </li>
-            </ul>
-          </div>
+          <SelectedMatches
+            matchedItems={this.state.matchedItems}
+            handleOnDeleteClick={this.handleOnDeleteClick}
+            currentSearchValue={this.state.currentSearchValue}
+            handleSearchChange={this.handleSearchChange.bind(this)}
+            handleKeyDown={this.handleKeyDown.bind(this)}
+          />
 
           <PossibleMatches
             possibleMatches={this.state.possibleMatches}
