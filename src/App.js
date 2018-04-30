@@ -5,6 +5,7 @@ import TFNValidityButton from "./components/TFNValidityButton.js";
 import TFNInput from "./components/TFNInput.js";
 import TFNGenerator from "./components/TFNGenerator.js";
 import AutoComplete from "./components/AutoComplete";
+import Encrypt from "./components/crypto-stuff/Encrypt"
 
 class App extends Component {
   constructor(props) {
@@ -60,6 +61,15 @@ class App extends Component {
                 <div className="col-md-12">
                   <AutoComplete />
                 </div>
+              </div>
+              <div className="row">
+                <div className="col-md-6">
+
+                </div>
+                <div className="col-md-6">
+
+                </div>
+                <Encrypt />
               </div>
             </div>
           </div>

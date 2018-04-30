@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@salesforce-ux/design-system": "^2.5.2",
+    "@salesforce/design-system-react": "^0.8.14",
     "bootstrap": "^4.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.0.2",
