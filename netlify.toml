@@ -1,1 +1,2 @@
-functions = "./src/functions"
+[build]
+    functions = "./build/functions"
